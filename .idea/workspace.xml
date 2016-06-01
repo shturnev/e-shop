@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="28a758ed-571c-4097-848a-4c44503d9842" name="Default" comment="+" />
+    <list default="true" id="28a758ed-571c-4097-848a-4c44503d9842" name="Default" comment="+">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+    </list>
     <ignored path="e-shop.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,7 +28,7 @@
       <file leaf-file-name="DB.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions/DB.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-1.3846154">
               <caret line="2" column="95" selection-start-line="2" selection-start-column="92" selection-end-line="2" selection-end-column="99" />
               <folding>
                 <marker date="1464771420000" expanded="true" signature="1430:1543" placeholder="INSERT INTO ${$table}..." />
@@ -39,11 +42,11 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3980344">
-              <caret line="18" column="81" selection-start-line="18" selection-start-column="81" selection-end-line="18" selection-end-column="81" />
+            <state vertical-scroll-proportion="0.42014742">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
-                <marker date="1464775047620" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
-                <marker date="1464775047620" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
+                <marker date="1464775876866" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
+                <marker date="1464775876866" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
               </folding>
             </state>
           </provider>
@@ -68,8 +71,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/login.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -187,10 +190,10 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18851133" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18851133" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -245,8 +248,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1464775047620" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
-            <marker date="1464775047620" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
+            <marker date="1464775876866" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
+            <marker date="1464775876866" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
           </folding>
         </state>
       </provider>
@@ -276,8 +279,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1464775047620" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
-            <marker date="1464775047620" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
+            <marker date="1464775876866" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
+            <marker date="1464775876866" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
           </folding>
         </state>
       </provider>
@@ -292,21 +295,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/DB.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-1.3846154">
           <caret line="2" column="95" selection-start-line="2" selection-start-column="92" selection-end-line="2" selection-end-column="99" />
           <folding>
             <marker date="1464771420000" expanded="true" signature="1430:1543" placeholder="INSERT INTO ${$table}..." />
             <marker date="1464771420000" expanded="true" signature="2783:2812" placeholder="DELETE FROM ..." />
             <marker date="1464771420000" expanded="true" signature="4548:4656" placeholder="INSERT INTO ${$table}..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.021454113">
-          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -318,13 +313,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.021428572">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3980344">
-          <caret line="18" column="81" selection-start-line="18" selection-start-column="81" selection-end-line="18" selection-end-column="81" />
+        <state vertical-scroll-proportion="0.42014742">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <marker date="1464775047620" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
-            <marker date="1464775047620" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
+            <marker date="1464775876866" expanded="true" signature="212:270" placeholder="SELECT * FRO..page_settings..." />
+            <marker date="1464775876866" expanded="true" signature="462:501" placeholder="SELECT * FRO..categories..." />
           </folding>
         </state>
       </provider>

@@ -18,6 +18,9 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 
 //TODO: необходимо отремонтировать слайдеры, переписать на новую версию jкарусель
 
+
+
+
 ?>
 
 
