@@ -5,8 +5,6 @@ require_once("functions/saveImg.php");
 require_once("functions/auth.php");
 
 
-$gg = 10;
-
 
 if(isset($_POST["submit"])):
 
