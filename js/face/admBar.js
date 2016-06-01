@@ -1,21 +1,23 @@
 $(document).ready(function () {
 
+
+//Открыть / закрыть admBar
     $("#admBar .tymbler").on("click", function () {
 
-        var status = $(this).hasClass("active");
+        var status = $(this).hasClass("active"),
+            cont    = $("#admBar"),
+            icon    = $(this).children("i"),
+            contW   = -$(cont).outerWidth();
+
+        $(this).toggleClass("active");
 
         if(!status){
-            $(this).addClass("active");
-            $("body").addClass("noScroll");
-            $("#admBar").css({"min-width": "100%", "overflow-y": "auto"}).removeClass("noScroll");
-            $(".barCont").addClass("active");
+            $(icon).html("&#xE23D;");
+            $(cont).animate({"left": 0}, "fast");
         }
         else{
-            $(".barCont").removeClass("active");
-            $("#admBar").css({"min-width": "100px", "overflow-y": "hidden"});
-            $("body").removeClass("noScroll");
-            $(this).removeClass("active");
-
+            $(icon).html("&#xE23E;");
+            $(cont).animate({"left": contW + "px"}, "fast");
         }
 
         return false;

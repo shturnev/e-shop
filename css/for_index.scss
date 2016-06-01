@@ -13,70 +13,55 @@ $red: #d92200;
 /*------------------------------
 Блок для админ панели
 -------------------------------*/
-#admBar{
+#admBar {
+  $w: 250px;
   position: fixed;
   top: 0;
-  left: 0;
-  overflow-y: hidden;
-  display: flex;
-  height: 100%;
-  min-width: 100px;
+  left: -$w;
   z-index: 99;
+  width: $w;
+  height: 100%;
+  background: $darkGray;
 
-  .barCont{
-    position: relative;
-    width: 250px;
-    min-width: 200px;
+  &>a.tymbler{
+    display:block;
+    position: absolute;
+    left: 100%;
+    top: 50px;
     background: $darkGray;
-    left: -250px;
+    color: white;
+    padding: 5px 10px;
 
-    &.active{
-      left: 0;
+    &:hover, &.active{
+      color: $blue ;
+
     }
+  }
+  ul.listBtns{
+    position: relative;
+    list-style: none;
+    padding: 0;
+    margin: 30px 10px;
+    background: $darkGray;
 
-    &>a.tymbler{
-      display:block;
-      position: absolute;
-      left: 100%;
-      top: 50px;
-      background: $darkGray;
-      color: white;
-      padding: 5px 10px;
 
-        &:hover, &.active{
-          color: $blue ;
-
-        }
-    }
-    ul.listBtns{
+    li{
+      padding: 6px 8px;
       position: relative;
-      list-style: none;
-      padding: 0;
-      margin: 30px 10px;
-      background: $darkGray;
+      border-bottom: 1px solid rgba(white, 0.3);
 
+      &>a{
+        font-size: 14px;
+        text-decoration: none;
+        color: white;
 
-      li{
-        padding: 6px 8px;
-        position: relative;
-        border-bottom: 1px solid rgba(white, 0.3);
-
-        &>a{
-          font-size: 14px;
-          text-decoration: none;
-          color: white;
-          
-          &:hover{
-            color: $blue;
-          }
+        &:hover{
+          color: $blue;
         }
       }
-
     }
 
   }
-
-
 }
 a.login{
   display:block;
