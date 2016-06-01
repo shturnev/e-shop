@@ -303,24 +303,17 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 <? if(is_admin()): ?>
 <!--Админ панель-->
 <section id="admBar">
-
-    <div class="barCont">
-        <a href="#" class="tymbler"><i class="material-icons">&#xE23E;</i></a>
-        <ul class="listBtns">
-            <li>
-                <a href="adm/page_settings.php?method_name=edit&ID=<? echo $resInfo["ID"] ?>">Редактировать старницу</a>
-            </li>
-            <li>
-                <a href="adm/categories.php">Категории</a>
-            </li>
-            <li>
-                <a href="adm/forSlider.php?stranica=<? echo $stranica ?>">Слайдер</a>
-            </li>
+    <a href="#" class="tymbler"><i class="material-icons">&#xE23E;</i></a>
+    <ul class="listBtns">
+        <li>
+            <a href="adm/page_settings.php?method_name=edit&ID=<? echo $resInfo["ID"] ?>">Редактировать старницу</a>
+        </li>
+        <li>
+            <a href="adm/categories.php">Категории</a>
+        </li>
+    </ul>
 
 
-        </ul>
-
-    </div>
 </section>
 <? else: ?>
     <a href="login.php" class="login" title="Авторизоваться"></a>
@@ -331,7 +324,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 <script src="js/slider/jquery.jcarousellite.min.js" type="text/javascript"></script>
 <script src="js/slider/forSlider.js" type="text/javascript"></script>
 
-<script src="js/face/admBar.js" type="text/javascript"></script>
+<script src="js/face/admBar.min.js" type="text/javascript"></script>
 <!-- End JS -->
 
 </body>
