@@ -16,6 +16,7 @@ if($resInfo){ $resInfo["meta"] = json_decode($resInfo["meta"], true); }
 $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 
 
+//TODO: необходимо отремонтировать слайдеры, переписать на новую версию jкарусель
 
 ?>
 
