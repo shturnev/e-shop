@@ -107,7 +107,7 @@ a.bul { background:url(images/bul.gif) no-repeat 0 center; padding-left:10px;}
 .more-products ul li{ float:left; width:94px; height:94px; border-right:dashed 1px #ccc; padding:0 10px;}
 .more-products ul li.last{ border-right:0; }
 
-.more-products-holder { width:804px; height:94px; position:relative; overflow:hidden; top:10px; left:70px;}
+.more-products-holder { width:804px; height:94px; position:relative; overflow:hidden; top:10px; margin: 0 auto;}
 .more-products-holder .jcarousel-clip{ width:804px; height:94px; position:relative; overflow:hidden; }
 
 .more-nav { font-size:0; line-height:0;}
