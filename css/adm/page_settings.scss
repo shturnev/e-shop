@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@import "../settings";
+
+a.addPage{
+  display:block;
+  text-align: center;
+  max-width: 250px;
+  margin: 50px auto;
+
+  font-size: 16px;
+  font-weight: bold;
+  color: $blue;
+
+  &:hover, &.active{
+    color: darken($blue, 10%);
+
+  }
+}
+section.addForm{
+  border: 1px solid $blue;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+section.list{
+  max-width: 1024px;
+  margin: 0 auto;
+
+  ul.pageItems{
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    
+    li{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      padding: 10px;
+      border-bottom: 1px solid $darkGray;
+      
+      &:hover{
+        background: lighten($blue, 25%);
+      }
+
+      &>a{
+        font-size: 16px;
+        color: $darkGray;
+        text-decoration: none;
+      }
+      &>.settings{
+        a{
+          display: inline-block;
+          margin-left: 10px;
+          font-size: 14px;
+          text-decoration: none;
+          color: $blue;
+          
+          &:hover{
+            color: red;
+          }
+        }
+      }
+
+    }
+
+  }
+}
+section.addForm{
+  max-width: 1024px;
+  margin: 50px auto;
+}
+
+.forError{
+  max-width: 1024px;
+  margin: 50px auto;
+  border: 1px solid red;
+  font-size: 14px;
+
+  &:empty{
+    display: none;
+  }
+}

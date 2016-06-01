@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/*------------------------------
+Общие настройки
+-------------------------------*/
+.noScroll {
+  overflow-y: hidden; }
+
+/*------------------------------
+Блок для админ панели
+-------------------------------*/
+#admBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: hidden;
+  display: flex;
+  height: 100%;
+  min-width: 100px;
+  z-index: 99; }
+  #admBar .barCont {
+    position: relative;
+    width: 250px;
+    min-width: 200px;
+    background: #37363a;
+    left: -250px; }
+    #admBar .barCont.active {
+      left: 0; }
+    #admBar .barCont > a.tymbler {
+      display: block;
+      position: absolute;
+      left: 100%;
+      top: 50px;
+      background: #37363a;
+      color: white;
+      padding: 5px 10px; }
+      #admBar .barCont > a.tymbler:hover, #admBar .barCont > a.tymbler.active {
+        color: #4bbaff; }
+    #admBar .barCont ul.listBtns {
+      position: relative;
+      list-style: none;
+      padding: 0;
+      margin: 30px 10px;
+      background: #37363a; }
+      #admBar .barCont ul.listBtns li {
+        padding: 6px 8px;
+        position: relative;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+        #admBar .barCont ul.listBtns li > a {
+          font-size: 14px;
+          text-decoration: none;
+          color: white; }
+          #admBar .barCont ul.listBtns li > a:hover {
+            color: #4bbaff; }
+
+a.login {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 80px;
+  text-decoration: none; }
+
+/*# sourceMappingURL=for_index.css.map */
