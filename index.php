@@ -18,6 +18,9 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 
 //TODO: необходимо отремонтировать слайдеры, переписать на новую версию jкарусель
 
+
+
+
 ?>
 
 
@@ -79,7 +82,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 			
 			<!-- Content Slider -->
 			<div id="slider" class="box">
-				<div id="slider-holder">
+				<div id="slider-holder" class="jcarousel">
 					<ul>
 					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
 					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
@@ -305,13 +308,13 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
         <a href="#" class="tymbler"><i class="material-icons">&#xE23E;</i></a>
         <ul class="listBtns">
             <li>
-                <a href="/13-shop/adm/page_settings.php?method_name=edit&ID=<? echo $resInfo["ID"] ?>">Редактировать старницу</a>
+                <a href="adm/page_settings.php?method_name=edit&ID=<? echo $resInfo["ID"] ?>">Редактировать старницу</a>
             </li>
             <li>
-                <a href="/13-shop/adm/categories.php">Категории</a>
+                <a href="adm/categories.php">Категории</a>
             </li>
             <li>
-                <a href="/13-shop/adm/forSlider.php?stranica=<? echo $stranica ?>">Слайдер</a>
+                <a href="adm/forSlider.php?stranica=<? echo $stranica ?>">Слайдер</a>
             </li>
 
 
@@ -325,10 +328,8 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 
 <!-- JS -->
 <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
-<!--<script src="js/jquery.jcarousel.pack.js" type="text/javascript"></script>-->
-<!--<script src="-->
-<!--https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.4/jquery.jcarousel-autoscroll.js" type="text/javascript"></script>-->
-<!--<script src="js/jquery-func.js" type="text/javascript"></script>-->
+<script src="js/slider/jquery.jcarousellite.min.js" type="text/javascript"></script>
+<script src="js/slider/forSlider.js" type="text/javascript"></script>
 
 <script src="js/face/admBar.js" type="text/javascript"></script>
 <!-- End JS -->
