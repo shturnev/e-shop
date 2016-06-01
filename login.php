@@ -5,6 +5,8 @@ require_once("functions/saveImg.php");
 require_once("functions/auth.php");
 
 
+$gg = 10;
+
 
 if(isset($_POST["submit"])):
 
@@ -43,7 +45,7 @@ if(isset($_POST["submit"])):
                     if(!$resDb){exit("Ошибка при записи в бд. На строке:".__LINE__);}
 
 
-                    setcookie("ID", $resDb["ID"], strtotime("+1 day"), "/13-shop");
+                    setcookie("ID", $resDb["ID"], strtotime("+1 day"), "/");
                     setcookie("token", $tmp["pass"], strtotime("+1 day"), "/");
 
 
@@ -64,7 +66,7 @@ if(isset($_POST["submit"])):
 
             $resDb = db_select("SELECT * FROM users WHERE email='".$email."' AND pass='".md5($pass)."'")["items"][0];
             if($resDb){
-                setcookie("ID", $resDb["ID"], strtotime("+1 day"), "/13-shop");
+                setcookie("ID", $resDb["ID"], strtotime("+1 day"), "/");
                 setcookie("token", $resDb["pass"], strtotime("+1 day"), "/");
             }
 
