@@ -15,8 +15,10 @@ if($resInfo){ $resInfo["meta"] = json_decode($resInfo["meta"], true); }
 -------------------------------*/
 $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 
-
-//TODO: необходимо отремонтировать слайдеры, переписать на новую версию jкарусель
+/*------------------------------
+Выведем инфо для большого слайдера
+-------------------------------*/
+$resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."' ORDER BY ID")["items"];
 
 
 
@@ -81,22 +83,22 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 		<div id="content">
 			
 			<!-- Content Slider -->
+            <? if($resBigSlider): ?>
 			<div id="slider" class="box">
 				<div id="slider-holder" class="jcarousel">
 					<ul>
-					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
+                        <? foreach ($resBigSlider as $item) { ?>
+					    <li><a href="#" style="background-image:url('FILES/forSlider/big/<? echo $item["photo"]; ?>');"></a></li>
+                        <? } ?>
 					</ul>
 				</div>
 				<div id="slider-nav">
-					<a href="#" class="active">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
+                    <? for ($i = 0; $i < count($resBigSlider); $i++): ?>
+                        <a href="#"><? echo i; ?></a>
+                    <? endfor; ?>
 				</div>
 			</div>
+            <? endif; ?>
 			<!-- End Content Slider -->
 			
 			<!-- Products -->
@@ -312,7 +314,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
             <a href="adm/categories.php">Категории</a>
         </li>
         <li>
-            <a href="adm/forSlider.php">Большой слайдер</a>
+            <a href="adm/forSlider.php?stranica=<? echo $stranica ?>">Большой слайдер</a>
         </li>
         <li>
             <a href="adm/products.php">Товары</a>
