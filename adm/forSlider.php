@@ -7,8 +7,8 @@ require_once("../functions/saveImg.php");
 $Admin = is_admin();
 if(!$Admin){ exit("Нет прав доступа"); }
 
-$referer = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
-
+$referer     = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
+$forStranica = ($_POST["stranica"])? $_POST["stranica"] : $_GET["stranica"];
 
 
 /*------------------------------
@@ -22,7 +22,7 @@ if(isset($_POST["submit"])):
 
     $arr = [
         "maw"       => 1000
-       ,"miw"       => 160
+       ,"miw"       => 320
        ,"path"      => "../FILES/forSlider"
        ,"inputName" => "photo"
 
@@ -71,7 +71,7 @@ endif;
 /*------------------------------
 Вывод записей
 -------------------------------*/
-$Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
+$Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' ORDER BY ID DESC", true)["items"];
 
 
 ?>
@@ -100,21 +100,23 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
     <section class="addItems">
         <h3>Добавить слайдер</h3>
         <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
-            <input type="hidden" name="stranica" value="<? echo $_GET["stranica"]; ?>"/>
+            <input type="hidden" name="referer" value="<? echo $referer; ?>"/>
+            <input type="hidden" name="stranica" value="<? echo $forStranica; ?>"/>
             <input type="file" name="photo[]" multiple/>
 
             <input name="submit" type="submit" value="Загрузить"/>
         </form>
     </section>
 
+    <? if($Items): ?>
     <ul class="listItems">
+        <? foreach ($Items as $item) {  ?>
         <li>
-            <a href="#" style="background-image:url(../images/slide1.jpg);"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
+            <a class="js-delItem" href="options.php?method_name=deleteBigSlider&ID=<? echo $item["ID"]; ?>" style="background-image:url('../FILES/forSlider/small/<? echo $item["photo"] ?>');"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
         </li>
-        <li>
-            <a href="#" style="background-image:url(../images/slide1.jpg);"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
-        </li>
+        <? } ?>
     </ul>
+    <? endif; ?>
 </section>
 
 
