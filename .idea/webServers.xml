@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="2d0b7de8-cb26-49cc-8177-ac55811edb33" name="local.e-shop1" url="http://local.courses/e-shop/">
+      <webServer id="874ba199-3ad2-45a3-aa6d-6f6165d5abe8" name="e-shop1" url="http://local.courses/e-shop/">
         <fileTransfer accessType="LOCAL" />
       </webServer>
     </option>

@@ -12,3 +12,42 @@ html,body{
 
 $blue: #4bbaff;
 $darkGray: #37363a;
+$red: #de0003;
+
+%flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+%ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+%section{
+  position: relative;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/*-----------------------------------
+Доп Классы
+-----------------------------------*/
+.tLeft{
+  text-align: left;
+}
+.tRight{
+  text-align: right;
+}
+.tCenter{
+  text-align: center;
+}
+
+$i: 0; $k: 5; $max: 500;
+@while($i < $max){
+  .mt#{$i}{margin-top: $i + px ;}
+  .mb#{$i}{margin-bottom: $i + px ;}
+  .mr#{$i}{margin-right: $i + px ;}
+  .ml#{$i}{margin-left: $i + px ;}
+
+  $i: $i + 5;
+}

@@ -1,7 +1,28 @@
 @charset "UTF-8";
 @import "../settings";
 
-a.addPage{
+/*-----------------------------------
+Общие настройки
+-----------------------------------*/
+a.return{
+  display:block;
+  transition: all 0.3s ease;
+
+  i{
+    display: inline-block;
+    padding: 5px;
+    font-size: 28px;
+    color: $darkGray;
+  }
+  &:hover{
+    background: rgba($darkGray, 0.1);
+
+    i{
+      color: white;
+    }
+  }
+}
+a.addPage{ //но желательно было бы переимоновать на что-то более универсальное, например addItems
   display:block;
   text-align: center;
   max-width: 250px;
@@ -16,12 +37,74 @@ a.addPage{
 
   }
 }
+h3{
+  color: $darkGray;
+}
+.st-formCont{
+  position: relative;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgba($darkGray, 0.3);
+
+  .row{
+    margin-bottom: 10px;
+    p{
+      margin: 0;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    input[type='text']{
+      width: 250px;
+      padding: 5px 8px;
+      font-size: 12px;
+      outline: none;
+    }
+    textarea{
+      @extend input[type='text'];
+    }
+    label{
+      font-size: 12px;
+    }
+  }
+
+
+}
+.postrNav{
+  position: relative;
+
+  a{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    padding: 2px 4px;
+    color: $blue;
+    vertical-align: middle;
+    margin: 5px;
+    
+    &:hover{
+      color: white;
+      background: $blue;
+    }
+
+  }
+  span{
+    font-size: 18px;
+    display: inline-block;
+    padding: 2px 4px;
+    color: white;
+    background: $blue;
+    vertical-align: middle;
+
+  }
+}
+/*-----------------------------------
+---####---
+-----------------------------------*/
 section.addForm{
   border: 1px solid $blue;
   padding: 15px;
   box-sizing: border-box;
 }
-
 section.list{
   max-width: 1024px;
   margin: 0 auto;
@@ -79,4 +162,152 @@ section.addForm{
   &:empty{
     display: none;
   }
+}
+
+/*-----------------------------------
+Большой слайдер
+-----------------------------------*/
+#bigSlider{
+  @extend %section;
+
+  .addItems{
+    position: relative;
+  }
+  .listItems{
+    @extend %flex, %ul;
+    position: relative;
+    margin-top: 35px;
+    padding: 15px 0;
+    border-top: 1px solid rgba($darkGray, 0.5);
+
+    &>li{
+      width: 200px;
+      height: 100px;
+      margin: 0 10px 10px 0;
+
+      a{
+        @extend %flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        width:inherit;
+        height:inherit;
+        background: no-repeat center / cover;
+        text-decoration: none;
+        color: rgba(#800606, 0.7);
+
+
+
+        .bg{
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background: rgba(white, 0.7);
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+        i{
+          font-size: 70px;
+          font-weight: bold;
+          position: relative;
+          opacity: 0;
+          transition: all 0.3s ease;
+        }
+        &:hover{
+          .bg,i{
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+/*-----------------------------------
+Работа с products
+-----------------------------------*/
+#products{
+  @extend %section;
+
+  &>.catBlock{
+    position: relative;
+    margin: 35px 0 15px 0;
+
+    h5{
+      color: $darkGray;
+      margin: 0 0 5px 0;
+
+    }
+    .flex{
+      @extend %flex;
+      flex-wrap: nowrap;
+
+      select{
+        min-width: 250px;
+        padding: 5px 8px;
+        font-size: 12px;
+        outline: none;
+
+      }
+    }
+
+
+  }
+  &>.listItems{
+    @extend %ul;
+    //margin-top: 35px;
+    border-top: 1px solid rgba($darkGray, 0.3);
+
+    &>li{
+      @extend %flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid rgba($darkGray, 0.3);
+      transition: all 0.3s ease;
+      
+      &:hover{
+        background: rgba(white, 0.15) ;
+      }
+      &>.col-1{
+        position: relative;
+
+        &>.title{
+          font-size: 14px;
+          //font-weight: bold;
+          color: $darkGray;
+          
+          &:hover{
+            color: $blue;
+          }
+        }
+      }
+      &>.col-2{
+        position: relative;
+
+        a{
+          display: inline-block;
+          margin: 0 3px;
+          padding: 2px 4px;
+          text-decoration: none;
+          color: $darkGray;
+
+          &:hover{
+            background: $darkGray;
+            color: white;
+          }
+          i{
+            font-size: 17px;
+          }
+
+        }
+      }
+    }
+  }
+
 }

@@ -92,6 +92,7 @@ $Items = db_select("SELECT * FROM page_settings ORDER BY stranica", true)["items
     <meta charset="utf-8"/>
     <title></title>
     <link rel="shortcut icon" href=""/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="../css/adm/page_settings.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -102,7 +103,7 @@ $Items = db_select("SELECT * FROM page_settings ORDER BY stranica", true)["items
 
 <div class="forError"><? if($errors){var_dump($errors);} ?></div>
 
-<a href="<? echo $referer; ?>" class="return">Вернуться</a>
+<a href="<? echo $referer; ?>" class="return" title="Вернуться"><i class="material-icons">&#xE31B;</i></a>
 <a href="#" class="addPage">Добавить страницу</a>
 
 <? $tmp = (!$resItem)? "hidden": null; ?>

@@ -6,14 +6,14 @@ $(document).ready(function () {
   -------------------------------*/
     $(".addPage").on("click", function () {
 
-        $(".addForm").slideToggle("fast");
+        $(this).next().slideToggle("fast");
         return false;
     });
 
 
     $(".delete").on("click", function () {
 
-        if (!confirm("Ты не пьян")) {
+        if (!confirm("Удалить?")) {
             return false;
         }
 

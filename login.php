@@ -24,7 +24,7 @@ if(isset($_POST["submit"])):
 
                     //Добавим картинку
                     if($_FILES["avatar"]["tmp_name"]){
-                        $resPhoto = photo_add_once(["maw" => 800, "miw" => 160, "path" => "FILES/", "inputName" => "avatar"]);
+                        $resPhoto = photo_add_once(["maw" => 800, "miw" => 160, "path" => "FILES/avatars", "inputName" => "avatar"]);
                         if($resPhoto["error"]){exit($resPhoto["error"]);}
                     }
 

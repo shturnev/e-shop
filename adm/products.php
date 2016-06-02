@@ -79,7 +79,7 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
 <html lang="ru">
 <head>
     <meta charset="utf-8"/>
-    <title>Работа со слайдером</title>
+    <title>Работа с товарами</title>
     <link rel="shortcut icon" href=""/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../css/adm/page_settings.css" rel="stylesheet" >
@@ -96,25 +96,63 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
 <!--<a href="#" class="addPage">Добавить слайдер</a>-->
 
 
-<section id="bigSlider">
-    <section class="addItems">
-        <h3>Добавить слайдер</h3>
+<section id="products">
+    <a href="#" class="addPage">Добавить позицию</a>
+    <section class="st-formCont" hidden>
+
         <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
             <input type="hidden" name="stranica" value="<? echo $_GET["stranica"]; ?>"/>
-            <input type="file" name="photo[]" multiple/>
 
-            <input name="submit" type="submit" value="Загрузить"/>
+            <div class="row">
+                <p>Заголовок</p>
+                <input type="text" name="title" placeholder="Заголовок"/>
+            </div>
+
+            <div class="row">
+                <input name="submit" type="submit" value="Добавить"/>
+            </div>
+
         </form>
     </section>
 
+    <div class="catBlock">
+        <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
+
+            <h5>Выбрать категорию</h5>
+
+            <div class="flex">
+                <select name="cat_id">
+                    <option value="">Lorem ipsum dolor.</option>
+                    <option value="">Lorem ipsum dolor.</option>
+                    <option value="">Lorem ipsum dolor.</option>
+                </select>
+
+                <input name="submit" type="submit" value="OK"/>
+            </div>
+        </form>
+    </div>
+
     <ul class="listItems">
         <li>
-            <a href="#" style="background-image:url(../images/slide1.jpg);"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
+            <div class="col-1">
+                <a href="#" class="title">Lorem ipsum dolor sit.</a>
+            </div>
+            <div class="col-2">
+                <a href="#" class="edit" title="Редактировть"><i class="material-icons">&#xE254;</i></a>
+                <a href="#" class="delete" title="Удалить"><i class="material-icons">&#xE92B;</i></a>
+            </div>
         </li>
-        <li>
-            <a href="#" style="background-image:url(../images/slide1.jpg);"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
-        </li>
+
     </ul>
+
+    <section class="postrNav tCenter mt50">
+        <a href="#" class="prev"><i class="material-icons">&#xE314;</i></a>
+        <a href="#" class="item">22</a>
+        <span class="center">1</span>
+        <a href="#" class="item">2</a>
+        <a href="#" class="next"><i class="material-icons">&#xE315;</i></a>
+    </section>
+
 </section>
 
 

@@ -84,10 +84,10 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 			<div id="slider" class="box">
 				<div id="slider-holder" class="jcarousel">
 					<ul>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
-					    <li><a href="#"><img src="css/images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
+					    <li><a href="#"><img src="images/slide1.jpg" alt="" /></a></li>
 					</ul>
 				</div>
 				<div id="slider-nav">
@@ -104,7 +104,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 				<div class="cl">&nbsp;</div>
 				<ul>
 				    <li>
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
 				    	<div class="product-info">
 				    		<h3>LOREM IPSUM</h3>
 				    		<div class="product-desc">
@@ -115,7 +115,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 				    	</div>
 			    	</li>
 			    	<li>
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
 				    	<div class="product-info">
 				    		<h3>LOREM IPSUM</h3>
 				    		<div class="product-desc">
@@ -126,7 +126,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 				    	</div>
 			    	</li>
 			    	<li class="last">
-				    	<a href="#"><img src="css/images/big1.jpg" alt="" /></a>
+				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
 				    	<div class="product-info">
 				    		<h3>LOREM IPSUM</h3>
 				    		<div class="product-desc">
@@ -216,27 +216,27 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 		<div class="more-products">
 			<div class="more-products-holder">
 				<ul>
-				    <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small1.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small2.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small3.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small4.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small5.jpg" alt="" /></a></li>
-				    <li><a href="#"><img src="css/images/small6.jpg" alt="" /></a></li>
-				    <li class="last"><a href="#"><img src="css/images/small7.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small1.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small2.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small3.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small4.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small5.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small6.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small7.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small1.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small2.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small3.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small4.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small5.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small6.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small7.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small1.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small2.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small3.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small4.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small5.jpg" alt="" /></a></li>
+				    <li><a href="#"><img src="images/small6.jpg" alt="" /></a></li>
+				    <li class="last"><a href="#"><img src="images/small7.jpg" alt="" /></a></li>
 				</ul>
 			</div>
 			<div class="more-nav">
@@ -310,6 +310,12 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
         </li>
         <li>
             <a href="adm/categories.php">Категории</a>
+        </li>
+        <li>
+            <a href="adm/forSlider.php">Большой слайдер</a>
+        </li>
+        <li>
+            <a href="adm/products.php">Товары</a>
         </li>
     </ul>
 
