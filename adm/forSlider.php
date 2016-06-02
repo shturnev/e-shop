@@ -3,13 +3,14 @@ require_once("../functions/DB.php");
 require_once("../functions/auth.php");
 require_once("../functions/proverki.php");
 require_once("../functions/saveImg.php");
+require_once("../functions/path.php");
 
 $Admin = is_admin();
 if(!$Admin){ exit("Нет прав доступа"); }
 
 $referer     = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
 $forStranica = ($_POST["stranica"])? $_POST["stranica"] : $_GET["stranica"];
-
+$thisPage    = path_withoutGet();
 
 /*------------------------------
 Ф-ии
