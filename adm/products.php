@@ -1,6 +1,7 @@
 <?php
 require_once("../functions/DB.php");
 require_once("../functions/auth.php");
+require_once("../functions/path.php");
 require_once("../functions/proverki.php");
 require_once("../functions/saveImg.php");
 
@@ -20,31 +21,98 @@ $referer = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
 -------------------------------*/
 if(isset($_POST["submit"])):
 
-    $arr = [
-        "maw"       => 1000
-       ,"miw"       => 160
-       ,"path"      => "../FILES/forSlider"
-       ,"inputName" => "photo"
+    $table = "products";
+    $response = [];
 
+    //проверки
+    if(!is_numeric($_POST["cat_id"])){ $response["error"][] = "Ошибка: не выбрана категории. на строке:".__LINE__; }
+    if(!$_POST["type"]){ $response["error"][] = "Ошибка: не выбран тип товара. на строке:".__LINE__; }
+
+    $arr = [
+        "title"         => proverka1($_POST["title"])
+        ,"date"         => time()
+        ,"cat_id"       => $_POST["cat_id"]
+        ,"type"         => $_POST["type"]
+        ,"text"         => proverka2($_POST["text"])
+        ,"price"        => proverka1($_POST["price"])
+        ,"price_2"      => proverka1($_POST["price_2"])
     ];
 
-    $resAdd = photo_add_few($arr);
-    $resAdd = array_column($resAdd, "filename");
 
-    if(count($resAdd))
-    {
-        $arr = [];
-        foreach ($resAdd as $item) {
-            $arr[] = [
-              "stranica" => $_POST["stranica"]
-              ,"photo"   => $item
-            ];
-        }
+    switch ($_POST["method_name"]):
+        case "add":
+            if($response["error"]){ break; }
 
-        //пишем в базу
-        $resDb = db_duplicate_update("bigSlider", $arr);
+            if($_FILES["photo"]["tmp_name"]){
+                $tmp = [
+                     "maw"       => 1024
+                    ,"miw"       => 200
+                    ,"path"      => "FILES/products"
+                    ,"inputName" => "photo"
+                ];
 
-    }
+                $resPhoto = photo_add_once($tmp);
+                if($resPhoto["filename"]){ $arr["photo"] = $resPhoto["filename"]; }
+                else
+                {
+                    $response["error"][] = $resPhoto["error"];
+                }
+
+            }
+
+            $response["db"]  = db_insert($table, $arr);
+
+            break;
+        case "edit":
+            if($response["error"]){ break; }
+
+
+            if(!is_numeric($_POST["ID"])){
+                $response["error"] = "Ошибка: переданы не верные параметры. Строка: ". __LINE__; break;
+            }
+            else
+            {
+                //проверим есть ли такая запись
+                $pr_item = db_row("SELECT * FROM ".$table." WHERE ID=".$ID)["item"];
+                if(!$pr_item){  $response["error"] = "Ошибка: переданы не верные параметры. Строка: ". __LINE__; break; }
+
+
+                if($_FILES["photo"]["tmp_name"]){
+                    $tmp = [
+                        "maw"        => 1024
+                        ,"miw"       => 200
+                        ,"path"      => "FILES/products"
+                        ,"inputName" => "photo"
+                    ];
+
+                    $resPhoto = photo_add_once($tmp);
+                    if($resPhoto["filename"]){
+
+                        $arr["photo"] = $resPhoto["filename"];
+
+                        //удалим старую фотографию
+                        if($pr_item["photo"])
+                        {
+                            $path = path_clear_path()."/e-shop/FILES/products/";
+                            if(file_exists($path."big/".$pr_item["photo"])){ unlink($path."big/".$pr_item["photo"]); }
+                            if(file_exists($path."small/".$pr_item["photo"])){ unlink($path."small/".$pr_item["photo"]); }
+                        }
+
+                    }
+                    else
+                    {
+                        $response["error"][] = $resPhoto["error"];
+                    }
+
+                }
+
+
+                $response  = db_update($table, $arr, "ID = ".$_POST["ID"]);
+            }
+
+            break;
+
+    endswitch;
 
 
 
@@ -74,6 +142,12 @@ endif;
 $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
 
 
+/*-----------------------------------
+Вывод категорий
+-----------------------------------*/
+$catItems = db_select("SELECT * FROM categories ORDER BY title", true)["items"];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -90,7 +164,7 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
 
 <body>
 
-<div class="forError"><? if($errors){var_dump($errors);} ?></div>
+<div class="forError"><? if($response["error"]){var_dump($response["error"]);} ?></div>
 
 <a href="<? echo $referer; ?>" class="return" title="Вернуться"><i class="material-icons">&#xE31B;</i></a>
 <!--<a href="#" class="addPage">Добавить слайдер</a>-->
@@ -101,11 +175,46 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
     <section class="st-formCont" hidden>
 
         <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
-            <input type="hidden" name="stranica" value="<? echo $_GET["stranica"]; ?>"/>
+            <input type="hidden" name="method_name" value="add">
+
+            <div class="row">
+                <p>Категория</p>
+                <select name="cat_id" id="">
+                    <? if($catItems){
+                        foreach ($catItems as $item) { ?>
+                            <option value="<? echo $item["ID"] ?>"><? echo $item["title"] ?></option>
+                        <? }
+                    } ?>
+                </select>
+            </div>
+
+            <div class="row">
+                <p>Тип</p>
+                <select name="type" >
+                    <option value="1">Мужская</option>
+                    <option value="2">Женская</option>
+                </select>
+            </div>
 
             <div class="row">
                 <p>Заголовок</p>
-                <input type="text" name="title" placeholder="Заголовок"/>
+                <input type="text" name="title" placeholder="Заголовок" required/>
+            </div>
+
+            <div class="row">
+                <p>Фото</p>
+                <input type="file" name="photo" >
+            </div>
+
+            <div class="row">
+                <p>Цена: простая / со скидкой</p>
+                <input type="text" name="price" placeholder="простая"/>
+                <input type="text" name="price_1" placeholder="со скидкой"/>
+            </div>
+
+            <div class="row">
+                <p>Текст</p>
+                <textarea name="text" class="js-ckeditor"></textarea>
             </div>
 
             <div class="row">
@@ -160,7 +269,12 @@ $Items = db_select("SELECT * FROM bigSlider ORDER BY ID DESC", true)["items"];
 
 
 <script type="text/javascript" src="../js/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../ckeditor/adapters/jquery.js"></script>
+
 <script type="text/javascript" src="../js/adm/page_settings.min.js"></script>
+<script type="text/javascript" src="../js/adm/forEditor.min.js"></script>
 </body>
 </html>
 

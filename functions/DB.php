@@ -146,7 +146,7 @@ function db_select($sql, $close = false){
  * Select для одной записи
  * @param $sql
  * @param bool|false $close
- * @return array
+ * @return array - ["error | item]
  */
 function db_row($sql, $close = false){
     if(!$sql){ exit("Ошибка: не верные параметры. На строке:". __LINE__ ); }
