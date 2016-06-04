@@ -18,7 +18,7 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 /*------------------------------
 Выведем инфо для большого слайдера
 -------------------------------*/
-$resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."' ORDER BY ID")["items"];
+$resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."' ORDER BY nomer")["items"];
 
 
 
