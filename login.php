@@ -46,6 +46,11 @@ if(isset($_POST["submit"])):
                     setcookie("ID", $resDb["ID"], strtotime("+1 day"), "/");
                     setcookie("token", $tmp["pass"], strtotime("+1 day"), "/");
 
+                    echo "
+                        <script>
+                            window.location = 'index.php';
+                        </script>";
+
 
                     $goto = true;
 
@@ -68,7 +73,10 @@ if(isset($_POST["submit"])):
                 setcookie("token", $resDb["pass"], strtotime("+1 day"), "/");
             }
 
-            $goto = true;
+            echo "
+                        <script>
+                            window.location = 'index.php';
+                        </script>";
 
 
             break;

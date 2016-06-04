@@ -72,7 +72,7 @@ endif;
 /*------------------------------
 Вывод записей
 -------------------------------*/
-$Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' ORDER BY ID DESC", true)["items"];
+$Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' ORDER BY nomer", true)["items"];
 
 
 ?>
@@ -83,6 +83,7 @@ $Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' OR
     <title>Работа со слайдером</title>
     <link rel="shortcut icon" href=""/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../js/sort/jquery-ui.min.css" rel="stylesheet" >
     <link href="../css/adm/page_settings.css" rel="stylesheet" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -110,9 +111,9 @@ $Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' OR
     </section>
 
     <? if($Items): ?>
-    <ul class="listItems">
+    <ul class="listItems sort_cont" data-js-sort="bigSlider">
         <? foreach ($Items as $item) {  ?>
-        <li>
+        <li id="<? echo "nomer_".$item["ID"]; ?>">
             <a class="js-delItem" href="options.php?method_name=deleteBigSlider&ID=<? echo $item["ID"]; ?>" style="background-image:url('../FILES/forSlider/small/<? echo $item["photo"] ?>');"><span class="bg"></span><i class="material-icons">&#xE14C;</i></a>
         </li>
         <? } ?>
@@ -125,6 +126,8 @@ $Items = db_select("SELECT * FROM bigSlider WHERE stranica='".$forStranica."' OR
 
 
 <script type="text/javascript" src="../js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="../js/sort/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/sort/for_sort.js"></script>
 <script type="text/javascript" src="../js/adm/page_settings.min.js"></script>
 </body>
 </html>
