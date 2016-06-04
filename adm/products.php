@@ -22,6 +22,8 @@ $referer = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
 if(isset($_POST["submit"])):
 
     $table = "products";
+    $path  = path_clear_path()."/FILES/products/";
+
     $response = [];
 
     //проверки
@@ -47,7 +49,7 @@ if(isset($_POST["submit"])):
                 $tmp = [
                      "maw"       => 1024
                     ,"miw"       => 200
-                    ,"path"      => "FILES/products"
+                    ,"path"      => $path
                     ,"inputName" => "photo"
                 ];
 
@@ -93,7 +95,6 @@ if(isset($_POST["submit"])):
                         //удалим старую фотографию
                         if($pr_item["photo"])
                         {
-                            $path = path_clear_path()."/e-shop/FILES/products/";
                             if(file_exists($path."big/".$pr_item["photo"])){ unlink($path."big/".$pr_item["photo"]); }
                             if(file_exists($path."small/".$pr_item["photo"])){ unlink($path."small/".$pr_item["photo"]); }
                         }
@@ -271,7 +272,7 @@ $catItems = db_select("SELECT * FROM categories ORDER BY title", true)["items"];
 <script type="text/javascript" src="../js/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="../ckeditor/adapters/jquery.js"></script>
+<script type="text/javascript" src="../ckeditor/adapters/jquery.min.js"></script>
 
 <script type="text/javascript" src="../js/adm/page_settings.min.js"></script>
 <script type="text/javascript" src="../js/adm/forEditor.min.js"></script>
