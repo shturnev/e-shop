@@ -21,8 +21,6 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."' ORDER BY nomer")["items"];
 
 
-
-
 ?>
 
 
