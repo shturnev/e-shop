@@ -97,7 +97,7 @@ $Items = db_select("SELECT * FROM ".$table." ORDER BY title", true)["items"];
 
 <? $tmp = (!$resItem)? "hidden": null; ?>
 <section class="addForm" <? echo $tmp; ?>>
-    <form action="/13-shop/adm/categories.php" method="post" enctype="multipart/form-data" name="myForm" target="_self">
+    <form action="../adm/categories.php" method="post" enctype="multipart/form-data" name="myForm" target="_self">
         <? $method = (@$resItem)? "edit": "add"; ?>
         <input type="hidden" name="method_name" value="<? echo $method; ?>" />
         <input type="hidden" name="ID" value="<? echo @$resItem["ID"]; ?>" />
@@ -116,8 +116,8 @@ $Items = db_select("SELECT * FROM ".$table." ORDER BY title", true)["items"];
         <li>
             <a href="#" class="pageItem"><? echo $item["title"] ?></a>
             <div class="settings">
-                <a href="/13-shop/adm/categories.php?method_name=edit&ID=<? echo $item["ID"] ?>" class="edit">Редактировать</a>
-                <a href="/13-shop/adm/categories.php?method_name=delete&ID=<? echo $item["ID"] ?>" class="delete">удалить</a>
+                <a href="../adm/categories.php?method_name=edit&ID=<? echo $item["ID"] ?>" class="edit">Редактировать</a>
+                <a href="../adm/categories.php?method_name=delete&ID=<? echo $item["ID"] ?>" class="delete">удалить</a>
             </div>
         </li>
         <? } ?>

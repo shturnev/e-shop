@@ -93,7 +93,7 @@ if(isset($_POST["submit"])):
                         //удалим старую фотографию
                         if($pr_item["photo"])
                         {
-                            $path = path_clear_path()."/e-shop/FILES/products/";
+                            $path = path_clear_path()."e-shop/FILES/products/";
                             if(file_exists($path."big/".$pr_item["photo"])){ unlink($path."big/".$pr_item["photo"]); }
                             if(file_exists($path."small/".$pr_item["photo"])){ unlink($path."small/".$pr_item["photo"]); }
                         }

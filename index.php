@@ -21,6 +21,11 @@ $resCats = db_select("SELECT * FROM categories ORDER BY title")["items"];
 $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."' ORDER BY ID")["items"];
 
 
+/*------------------------------
+Выведем инфо для большого слайдера
+-------------------------------*/
+$resProducts = db_select("SELECT * FROM products ORDER BY ID")["items"];
+
 
 
 ?>
@@ -36,21 +41,21 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 	<!--[if lte IE 6]><link rel="stylesheet" href="css/ie6.css" type="text/css" media="all" /><![endif]-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/for_index.css" />
-	
+
 	<meta name="keywords" content="<? echo $resInfo["meta"]["keywords"]; ?>" />
 	<meta name="description" content="<? echo $resInfo["meta"]["desc"]; ?>" />
-	
-	
+
+
 </head>
 <body>
-	
-<!-- Shell -->	
+
+<!-- Shell -->
 <div class="shell">
-	
-	<!-- Header -->	
+
+	<!-- Header -->
 	<div id="header">
-		<h1 id="logo"><a href="#">shoparound</a></h1>	
-		
+		<h1 id="logo"><a href="#">shoparound</a></h1>
+
 		<!-- Cart -->
 		<div id="cart">
 			<a href="#" class="cart-link">Your Shopping Cart</a>
@@ -60,7 +65,7 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 			<span>Cost: <strong>$250.99</strong></span>
 		</div>
 		<!-- End Cart -->
-		
+
 		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
@@ -74,14 +79,14 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 		<!-- End Navigation -->
 	</div>
 	<!-- End Header -->
-	
+
 	<!-- Main -->
 	<div id="main">
 		<div class="cl">&nbsp;</div>
-		
+
 		<!-- Content -->
 		<div id="content">
-			
+
 			<!-- Content Slider -->
             <? if($resBigSlider): ?>
 			<div id="slider" class="box">
@@ -100,64 +105,46 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 			</div>
             <? endif; ?>
 			<!-- End Content Slider -->
-			
+
 			<!-- Products -->
 			<div class="products">
 				<div class="cl">&nbsp;</div>
 				<ul>
-				    <li>
-				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>LOREM IPSUM</h3>
-				    		<div class="product-desc">
-								<h4>WOMEN’S</h4>
-				    			<p>Lorem ipsum dolor sit<br />amet</p>
-				    			<strong class="price">$58.99</strong>
-				    		</div>
-				    	</div>
-			    	</li>
-			    	<li>
-				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>LOREM IPSUM</h3>
-				    		<div class="product-desc">
-								<h4>WOMEN’S</h4>
-				    			<p>Lorem ipsum dolor sit<br />amet</p>
-				    			<strong class="price">$58.99</strong>
-				    		</div>
-				    	</div>
-			    	</li>
-			    	<li class="last">
-				    	<a href="#"><img src="images/big1.jpg" alt="" /></a>
-				    	<div class="product-info">
-				    		<h3>LOREM IPSUM</h3>
-				    		<div class="product-desc">
-								<h4>WOMEN’S</h4>
-				    			<p>Lorem ipsum dolor sit<br />amet</p>
-				    			<strong class="price">$58.99</strong>
-				    		</div>
-				    	</div>
-			    	</li>
+					<? if($resProducts): ?>
+					<? foreach ($resProducts as $item) { ?>
+						<li>
+							<a href="#" style="background-image:url('/adm/FILES/productsbig/<? echo $item["photo"]; ?>');"></a>
+							<div class="product-info">
+								<h3> <? echo $item["type"] ?></h3>
+								<div class="product-desc">
+									<h4> <? echo $item["title"] ?></h4>
+									<p><? echo $item["text"] ?></p>
+									<strong class="price"> <? echo $item["price"] ?></strong>
+								</div>
+							</div>
+						</li>
+					<? } ?>
+					<? endif; ?>
 				</ul>
 				<div class="cl">&nbsp;</div>
 			</div>
 			<!-- End Products -->
-			
+
 		</div>
 		<!-- End Content -->
-		
+
 		<!-- Sidebar -->
 		<div id="sidebar">
-			
+
 			<!-- Search -->
 			<div class="box search">
 				<h2>Search by <span></span></h2>
 				<div class="box-content">
 					<form action="" method="post">
-						
+
 						<label>Keyword</label>
 						<input type="text" class="field" />
-						
+
 						<label>Category</label>
 						<select class="field">
                             <? if($resCats): foreach ($resCats as $item) { ?>
@@ -165,7 +152,7 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 
                             <?} endif; ?>
 						</select>
-						
+
 						<div class="inline-field">
 							<label>Price</label>
 							<select class="field small-field">
@@ -176,19 +163,19 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 								<option value="">$50</option>
 							</select>
 						</div>
-						
+
 						<input type="submit" class="search-submit" value="Search" />
-						
+
 						<p>
 							<a href="#" class="bul">Advanced search</a><br />
 							<a href="#" class="bul">Contact Customer Support</a>
 						</p>
-	
+
 					</form>
 				</div>
 			</div>
 			<!-- End Search -->
-			
+
 			<!-- Categories -->
 			<div class="box categories">
 				<h2>Categories <span></span></h2>
@@ -203,17 +190,17 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 				</div>
 			</div>
 			<!-- End Categories -->
-			
+
 		</div>
 		<!-- End Sidebar -->
-		
+
 		<div class="cl">&nbsp;</div>
 	</div>
 	<!-- End Main -->
-	
+
 	<!-- Side Full -->
 	<div class="side-full">
-		
+
 		<!-- More Products -->
 		<div class="more-products">
 			<div class="more-products-holder">
@@ -247,7 +234,7 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 			</div>
 		</div>
 		<!-- End More Products -->
-		
+
 		<!-- Text Cols -->
 		<div class="cols">
 			<div class="cl">&nbsp;</div>
@@ -274,10 +261,10 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 			<div class="cl">&nbsp;</div>
 		</div>
 		<!-- End Text Cols -->
-		
+
 	</div>
 	<!-- End Side Full -->
-	
+
 	<!-- Footer -->
 	<div id="footer">
 		<p class="left">
@@ -297,8 +284,8 @@ $resBigSlider = db_select("SELECT * FROM bigSlider WHERE stranica='".$stranica."
 		</p>
 	</div>
 	<!-- End Footer -->
-	
-</div>	
+
+</div>
 <!-- End Shell -->
 
 
