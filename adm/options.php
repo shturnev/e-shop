@@ -76,8 +76,8 @@ if($_GET["method_name"] == "deleteProduct" && is_numeric($_GET["ID"])){
     //удалим картинки
     if($resItem["photo"])
     {
-        $tmp["big"]     = path_clear_path()."FILES/products/big/".$resItem["photo"];
-        $tmp["small"]   = path_clear_path()."FILES/products/small/".$resItem["photo"];
+        $tmp["big"]     = path_clear_path()."/FILES/products/big/".$resItem["photo"];
+        $tmp["small"]   = path_clear_path()."/FILES/products/small/".$resItem["photo"];
 
         if(file_exists($tmp["small"])){ unlink($tmp["small"]);  }
         if(file_exists($tmp["big"])){ unlink($tmp["big"]);  }
