@@ -181,9 +181,15 @@ section.addForm{
     border-top: 1px solid rgba($darkGray, 0.5);
 
     &>li{
-      width: 200px;
-      height: 100px;
-      margin: 0 10px 10px 0;
+      $n: 5;
+      $m: 10;
+      $w: (1024 / $n) - $m;
+
+
+      width: $w + px;
+      height: ($w / 2) + px;
+      margin: 0 #{$m}px #{$m}px 0;
+
 
       a{
         @extend %flex;
