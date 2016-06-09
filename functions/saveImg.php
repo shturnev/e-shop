@@ -157,7 +157,7 @@ function saveImg($filein, $fileOut, $new_w){
     //узнаем нужные размеры
     switch ($fileInfo[0]):
         case $fileInfo[0] > $fileInfo[1]:  $k = $fileInfo[1] /  $fileInfo[0]; break;
-        case $fileInfo[0] < $fileInfo[1]:  $k = $fileInfo[0] /  $fileInfo[1]; break;
+        case $fileInfo[0] < $fileInfo[1]:  $k = $fileInfo[1] /  $fileInfo[0]; break;
         case $fileInfo[0] == $fileInfo[1]: $k = 1; break;
     endswitch;
 

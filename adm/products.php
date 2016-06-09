@@ -10,6 +10,7 @@ $Admin = is_admin();
 if(!$Admin){ exit("Нет прав доступа"); }
 
 $referer    = ($_POST["referer"])? $_POST["referer"]: $_SERVER["HTTP_REFERER"];
+              if($_GET["referer"]){$referer = $_GET["referer"];}
 $this_page  = path_withoutGet();
 
 
@@ -75,6 +76,8 @@ if(isset($_POST["submit"])):
             }
             else
             {
+                $ID = $_POST["ID"];
+
                 //проверим есть ли такая запись
                 $pr_item = db_row("SELECT * FROM ".$table." WHERE ID=".$ID)["item"];
                 if(!$pr_item){  $response["error"] = "Ошибка: переданы не верные параметры. Строка: ". __LINE__; break; }
@@ -82,9 +85,9 @@ if(isset($_POST["submit"])):
 
                 if($_FILES["photo"]["tmp_name"]){
                     $tmp = [
-                        "maw"        => 1024
+                         "maw"       => 1024
                         ,"miw"       => 200
-                        ,"path"      => "FILES/products"
+                        ,"path"      => $path
                         ,"inputName" => "photo"
                     ];
 
@@ -107,6 +110,10 @@ if(isset($_POST["submit"])):
                     }
 
                 }
+//                else
+//                {
+//
+//                }
 
 
                 $response  = db_update($table, $arr, "ID = ".$_POST["ID"]);
@@ -133,8 +140,11 @@ if($_GET["method_name"] == "delete" && is_numeric($_GET["ID"])):
 endif;
 
 if($_GET["method_name"] == "edit" && is_numeric($_GET["ID"])):
-    $resItem = db_row("SELECT * FROM page_settings WHERE ID=".$_GET["ID"])["item"];
-    if($resItem){$resItem["meta"] = json_decode($resItem["meta"], true);}
+    $resItem = db_row("SELECT * FROM products WHERE ID=".$_GET["ID"])["item"];
+
+
+
+
 endif;
 
 
@@ -156,7 +166,7 @@ $catItems = db_select("SELECT * FROM categories ORDER BY title", true)["items"];
  *                 <br>]
  * @return array
  */
-function products_get_1($array)
+function products_get_1($array, $close = false)
 {
     $cat_id     = $array["cat_id"];
     $page       = (!is_numeric($array["page"]))? 0 : $array["page"];
@@ -186,7 +196,7 @@ function products_get_1($array)
     //Делаем выборку
     $sql = "SELECT * FROM products ".$sqlTmp." ORDER BY ".$order_1."='".$order_2."'
             LIMIT ".$resNav["start"].",".$resNav["limit"];
-    $resItems = db_select($sql);
+    $resItems = db_select($sql, $close);
     if($resItems["error"]){
         $result["error"] = $resItems["error"];
         return $result;
@@ -199,13 +209,14 @@ function products_get_1($array)
     return $result;
 }
 
+
+
 $arr = [
     "cat_id"    => @$_GET["cat_id"]
    ,"page"      => @$_GET["page"]
-   ,"limit"     => 15
+   ,"limit"     => 2
 ];
-
-$resProducts = products_get_1($arr);
+$resProducts = products_get_1($arr, true);
 
 
 
@@ -236,17 +247,29 @@ $resProducts = products_get_1($arr);
 
     <!--Добавить позицию-->
     <a href="#" class="addPage">Добавить позицию</a>
-    <section class="st-formCont" hidden>
+    <? $tmp = (!$resItem)? "hidden": null;  ?>
+    <section class="st-formCont" <? echo $tmp; ?>>
 
         <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
-            <input type="hidden" name="method_name" value="add">
+            <? $method = ($resItem)? "edit": "add"; ?>
+            <input type="hidden" name="method_name" value="<? echo $method; ?>">
+            <input type="hidden" name="ID" value="<? echo $resItem["ID"]; ?>">
+
+
+            <? if($resItem["photo"]){ ?>
+                <img src="../FILES/products/small/<? echo $resItem["photo"] ?>" alt="" align="right" width="100">
+            <? } ?>
 
             <div class="row">
                 <p>Категория</p>
                 <select name="cat_id" id="">
                     <? if($catItems){
-                        foreach ($catItems as $item) { ?>
-                            <option value="<? echo $item["ID"] ?>"><? echo $item["title"] ?></option>
+                        foreach ($catItems as $item) {
+
+                            $selected = ($resItem["cat_id"] == $item["ID"])? "selected": null;
+
+                            ?>
+                            <option value="<? echo $item["ID"] ?>" <? echo $selected; ?>><? echo $item["title"] ?></option>
                         <? }
                     } ?>
                 </select>
@@ -255,14 +278,18 @@ $resProducts = products_get_1($arr);
             <div class="row">
                 <p>Тип</p>
                 <select name="type" >
-                    <option value="1">Мужская</option>
-                    <option value="2">Женская</option>
+                    <?
+                        $tmp = [1 => "Мужская", 2 => "Женская"];
+                        foreach ($tmp as $item => $value) {
+                            $selected = ($resItem["type"] == $item)? "selected": null; ?>
+                            <option value="<? echo $item ?>" <? echo $selected; ?>><? echo $value ?></option>
+                        <? } ?>
                 </select>
             </div>
 
             <div class="row">
                 <p>Заголовок</p>
-                <input type="text" name="title" placeholder="Заголовок" required/>
+                <input type="text" name="title" value="<? echo $resItem["title"]; ?>" placeholder="Заголовок" required/>
             </div>
 
             <div class="row">
@@ -272,13 +299,13 @@ $resProducts = products_get_1($arr);
 
             <div class="row">
                 <p>Цена: простая / со скидкой</p>
-                <input type="text" name="price" placeholder="простая"/>
-                <input type="text" name="price_1" placeholder="со скидкой"/>
+                <input type="text" value="<? echo $resItem["price"]; ?>" name="price" placeholder="простая"/>
+                <input type="text" value="<? echo $resItem["price_2"]; ?>" name="price_2" placeholder="со скидкой"/>
             </div>
 
             <div class="row">
                 <p>Текст</p>
-                <textarea name="text" class="js-ckeditor"></textarea>
+                <textarea name="text" class="js-ckeditor"><? echo $resItem["text"]; ?></textarea>
             </div>
 
             <div class="row">
@@ -291,15 +318,19 @@ $resProducts = products_get_1($arr);
 
     <!--Вывод позиций-->
     <div class="catBlock">
-        <form action="" method="post" enctype="multipart/form-data" name="myForm" target="_self">
-            <input type="hidden" name="method_name" value="get">
+        <form action="<? echo $this_page ?>" method="get" enctype="multipart/form-data" name="myForm" target="_self">
+            <input type="hidden" name="referer" value="<? echo $referer; ?>">
             <h5>Выбрать категорию</h5>
 
             <div class="flex">
                 <select name="cat_id">
+                    <option value="null">--//--</option>
                     <? if($catItems){
-                        foreach ($catItems as $item) { ?>
-                            <option value="<? echo $item["ID"] ?>"><? echo $item["title"] ?></option>
+                        foreach ($catItems as $item) {
+                            $selected = ($_GET["cat_id"] && $_GET["cat_id"] == $item["ID"])? "selected": null;
+
+                            ?>
+                            <option value="<? echo $item["ID"] ?>" <? echo $selected ?>><? echo $item["title"] ?></option>
                         <? }
                     } ?>
                 </select>
@@ -319,7 +350,7 @@ $resProducts = products_get_1($arr);
                 <a href="#<? echo $item["ID"]; ?>" class="title"><? echo $item["title"]; ?></a>
             </div>
             <div class="col-2">
-                <a href="#<? echo $item["ID"]; ?>" class="edit" title="Редактировть"><i class="material-icons">&#xE254;</i></a>
+                <a href="<? echo $this_page."?method_name=edit&ID=".$item["ID"]."&referer=".$referer; ?>" class="edit" title="Редактировть"><i class="material-icons">&#xE254;</i></a>
                 <a href="options.php?method_name=deleteProduct&ID=<? echo $item["ID"]; ?>" class="delete js-delete" title="Удалить"><i class="material-icons">&#xE92B;</i></a>
             </div>
         </li>
@@ -333,7 +364,8 @@ $resProducts = products_get_1($arr);
     <? if($resProducts["stack"]):
 
         $tmp = ($cat_id)? "cat_id=".$cat_id."&" : null;
-        
+        $tmp = ($referer)? $tmp."referer=".$referer."&" : null;
+
         $arrTmp = [
             "url"   => $this_page."?".$tmp."page="
            ,"stack" => $resProducts["stack"]
