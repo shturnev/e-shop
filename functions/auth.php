@@ -20,3 +20,11 @@ function is_admin($ID = null){
     $resDb = db_row("SELECT status FROM users WHERE ID='".$_COOKIE["ID"]."' AND status = 3", true)["item"];
     return $resDb;
 }
+
+function auth_exit(){
+
+    setcookie("ID", null, strtotime("-1 hour"), "/");
+    setcookie("token", null, strtotime("-1 hour"), "/");
+
+}
+
